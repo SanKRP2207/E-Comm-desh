@@ -1,10 +1,70 @@
-.App {
+
+.Nav{
+  background-color: #92a5cb;
+  margin-top: 0px;
+  padding-top: 0px;
+  height: 50px;
+}
+.Nav ul{
+  margin-top: auto;
+  /* display:flex; */
+
+}
+.Nav li{
+  display:inline;
+  padding: 10px;
+  background-color: #61dafb;
+  height: 50px;
+  /* margin-top: 50px; */
+  
+}
+
+.singup{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.singup input{
+  padding: 10px;
+  margin: 20px;
+  width: 500px;
+  border: 2px solid;
+}
+
+.singup button{
+  padding: 10px;
+  margin: 20px;
+  width: 100px;
+  background-color: orange;
+  border: 2px solid;
+}
+
+.footer{
+  color: #282c34;
+  background-color: #61dafb;
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  height: 60px;
+  /* margin-bottom: 0px; */
+}
+
+.login{
+  text-align: center;
+}
+
+.login input{
+  padding: 10px;
+  margin: 20px;
+  width: 500px;
+  border: 2px solid;
+}
+
+.login button{
+  padding: 10px; 
+  margin: 20px;
+  width: 100px;
+  background-color: orange;
+  border: 2px solid;
+  /* mix-blend-mode: multiply; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
