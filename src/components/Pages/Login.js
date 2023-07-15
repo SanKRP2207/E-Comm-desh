@@ -1,5 +1,4 @@
 import React from "react";
-import '../App.css';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -7,14 +6,6 @@ const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const navigate = useNavigate();
-
-    React.useEffect(()=>{
-        const auth = localStorage.getItem('user');
-        if(auth)
-        {
-            navigate('/');
-        }
-    })
 
     const handlelogin = async () => {
         console.log(email, password);
@@ -26,12 +17,17 @@ const Login = () => {
                 'content-Type': 'application/json'
             }
         })
-        result = result.json()
-        console.log(result);
+        result = await result.json();
+        console.log(result)
 
-        localStorage.setItem('user', JSON.stringify(result));
+        if (result.name) {
+            localStorage.setItem('user', JSON.stringify(result));
+            navigate('/');
 
-        navigate('/');
+        } else {
+            alert("Please Enter corect detail");
+        }
+
 
 
     }
