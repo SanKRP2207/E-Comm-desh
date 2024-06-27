@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -7,21 +7,22 @@ const Singup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [file, setFile] = useState();
 
     // here using useNavigate as a navigate
     const navigate = useNavigate();
 
     // when user singup once then it will not allow to go and get singup page
-    useEffect(()=>{
+    useEffect(() => {
         const auth = localStorage.getItem('user');
-        if(auth)
-        {
+        if (auth) {
             navigate('/');
         }
     })
 
     // connecting to backend
-    const collection = async () => {
+    const collection = async (e) => {
+        e.preventDefault();
         console.warn(name, email, password);
         let result = await fetch('http://localhost:4500/register', {
             method: 'post',
@@ -34,21 +35,28 @@ const Singup = () => {
         console.log(result);
 
         // storing in localStorage
-        localStorage.setItem('user',JSON.stringify(result));
+        localStorage.setItem('user', JSON.stringify(result));
         // if data are store then navigate in below given route
+        
         navigate('/');
+
 
     }
 
     return (
-        <div className='singup'>
+        <div className='singup' style={{ marginTop: '64px' }}>
             <h1>Register</h1>
-            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter name' /><br />
-            <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter E-mail' /><br />
-            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter password' /><br />
-            <button type='button' onClick={collection}>Sing Up</button>
 
+            <form onSubmit={collection}>
+                {/* <label>Profile Picture</label><br/>  */}
+                {/* <input type="file" onChange={(e) => setFile(e.target.files[0])}/>  <br /> */}
+                <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter name' required /><br />
+                <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter E-mail' required /><br />
+                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter password' required /><br />
+                <button className='submit' type='submit'>Sing Up</button>
+ 
 
+            </form>
         </div>
     )
 }

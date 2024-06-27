@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -7,8 +7,15 @@ const Login = () => {
     const [password, setPassword] = React.useState("");
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const auth = localStorage.getItem('user');
+        if (auth && auth !== " ") {
+            navigate('/');
+        }
+    }, [navigate]);
+
     const handlelogin = async () => {
-        console.log(email, password);
+        // console.log(email, password);
 
         let result = await fetch('http://localhost:4500/login', {
             method: 'post',
@@ -18,9 +25,9 @@ const Login = () => {
             }
         })
         result = await result.json();
-        console.log(result)
+        // console.log(result)
 
-        if (result.name) {
+        if (result) {
             localStorage.setItem('user', JSON.stringify(result));
             navigate('/');
 
@@ -28,15 +35,15 @@ const Login = () => {
             alert("Please Enter corect detail");
         }
 
-
-
     }
     return (
-        <div className="login">
+        <div className="login" style={{ marginTop: '64px' }}>
             <h1>Login</h1>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter E-mail" /><br />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" /><br />
-            <button type="button" onClick={handlelogin}>Submit</button>
+            <form onSubmit={handlelogin}>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter E-mail" required /><br />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" required /><br />
+                <button type="submit" >Submit</button>
+            </form>
         </div>
     )
 }
