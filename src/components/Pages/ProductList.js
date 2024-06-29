@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom'
+import { EackEndLink } from "./EackEndLink";
+
 
 const ProductList = ({ showDeleteAndUpdate = true, showBuyAndShopping = false }) => {
 
@@ -11,13 +13,13 @@ const ProductList = ({ showDeleteAndUpdate = true, showBuyAndShopping = false })
 
     const productlist = async () => {
 
-        let result = await fetch('http://localhost:4500/productList');
+        let result = await fetch(`${EackEndLink}/productList`);
         result = await result.json();
         SetProducts(result);
     }
 
     const deleteproduct = async (id) => {
-        let result = await fetch(`http://localhost:4500/delete/${id}`, {
+        let result = await fetch(`${EackEndLink}/delete/${id}`, {
             method: 'Delete'
         });
         result = await result.json();
@@ -32,7 +34,7 @@ const ProductList = ({ showDeleteAndUpdate = true, showBuyAndShopping = false })
 
         if (key) {
             try {
-                let response = await fetch(`http://localhost:4500/search/${key}`);
+                let response = await fetch(`${EackEndLink}/search/${key}`);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -80,7 +82,7 @@ const ProductList = ({ showDeleteAndUpdate = true, showBuyAndShopping = false })
                                 <div key={item._id} >
                                     {/* <li>{index + 1}</li> */}
                                     <div className="card-img-con"  style={{ width: '18vw', height: '26vh', padding: '10px 20px 0px 10px' }}>
-                                        <img className="card-img"  src={`http://localhost:4500/images/${item.image}`} alt={item.name} width="100%" height="100%" />
+                                        <img className="card-img"  src={`${EackEndLink}/images/${item.image}`} alt={item.name} width="100%" height="100%" />
                                     </div>
                                     <div className="card-content" style={{ textAlign: 'initial', padding: '0px 20px 0px 20px' }}>
                                         <h3 style={{ margin: '3px 0' }}><strong>Name:-</strong> {item.name}</h3>
@@ -99,7 +101,7 @@ const ProductList = ({ showDeleteAndUpdate = true, showBuyAndShopping = false })
                                     {showBuyAndShopping && (
                                         <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '10px' }}>
                                             <Link to={'/buy/' + item._id} style={{ textDecoration: 'none', color: 'white', backgroundColor: 'blue', padding: '0px 10px', borderRadius: '2px' }}>Buy</Link>
-                                            <Link to={'/shoping/' + item._id} style={{ textDecoration: 'none', color: 'white', backgroundColor: 'orange', padding: '0px 10px', borderRadius: '2px' }}>Bag</Link>
+                                            <Link to={'/shoping/' + item._id} style={{ textDecoration: 'none', color: 'white', backgroundColor: 'orange', padding: '0px 10px', borderRadius: '2px' }}>Card</Link>
                                         </div>
                                     )}
                                 </div>

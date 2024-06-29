@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import { EackEndLink } from "./EackEndLink";
 
 const Login = () => {
 
@@ -14,10 +15,11 @@ const Login = () => {
         }
     }, [navigate]);
 
-    const handlelogin = async () => {
-        // console.log(email, password);
+    const handlelogin = async (e) => {
+        e.preventDefault();
+        console.log(email, password);
 
-        let result = await fetch('http://localhost:4500/login', {
+        let result = await fetch(`${EackEndLink}/login`, {
             method: 'post',
             body: JSON.stringify({ email, password }),
             headers: {

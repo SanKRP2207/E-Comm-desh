@@ -1,13 +1,13 @@
 // import { useState } from "react";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EackEndLink } from './EackEndLink';
 
 
 const Singup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [file, setFile] = useState();
 
     // here using useNavigate as a navigate
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Singup = () => {
     const collection = async (e) => {
         e.preventDefault();
         console.warn(name, email, password);
-        let result = await fetch('http://localhost:4500/register', {
+        let result = await fetch(`${EackEndLink}/register`, {
             method: 'post',
             body: JSON.stringify({ name, email, password }),
             headers: {

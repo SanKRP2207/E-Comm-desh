@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate,  useParams } from "react-router-dom";
 // import axios from 'axios';
+import { EackEndLink } from "./EackEndLink";
 
 const UpdateProduct = () => {
     const [name, setName] = useState('');
@@ -14,7 +15,7 @@ const UpdateProduct = () => {
     useEffect(() => {
         const showProductData = async () => {
             try {
-                const response = await fetch(`http://localhost:4500/products/${params.id}`);
+                const response = await fetch(`${EackEndLink}/products/${params.id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setName(data.name);
@@ -35,7 +36,7 @@ const UpdateProduct = () => {
     const updateProduct = async () => {
         const updatedProduct = { name, price, category, company };
         try {
-            const response = await fetch(`http://localhost:4500/update/${params.id}`, {
+            const response = await fetch(`${EackEndLink}/update/${params.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
