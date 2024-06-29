@@ -123,8 +123,8 @@
 }
 
 .p_header {
-  /* text-align: center; */
-  align-items: end;
+  text-align: center;
+
 
   display:flex;
   flex-direction: row;
