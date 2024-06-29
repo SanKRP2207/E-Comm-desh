@@ -124,8 +124,6 @@
 
 .p_header {
   text-align: center;
-
-
   display:flex;
   flex-direction: row;
   justify-content: space-around;
@@ -133,6 +131,12 @@
 
 
 }
+
+.p_header li {
+  display: inline-block;
+  border: 1px solid black;
+  /* padding: 10px; */
+  /* width: 100px; */
 
 
 }
@@ -145,8 +149,6 @@
   height: 50vh;
   width: 20vw;
   margin-top: 30px;
-  /* margin-left: 50px; */
-  /* align-items: end; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -193,7 +195,6 @@
       grid-template-rows: 1fr 2fr;
       align-items: center;
       min-width: 300px;
-      justify-content: space-around;
   }
   .card-img-con{
     width:100%;
